@@ -1,0 +1,142 @@
+:root {
+    --bg-color: #f0f2f5;
+    --card-empty: #ffffff;
+    --card-occupied: #e3f2fd; /* Light Blue */
+    --text-dark: #1a1a1a;
+    --accent-color: #0056b3;
+    --danger-color: #d32f2f;
+    --grid-gap: 20px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.ward-grid {
+    display: grid;
+    /* The 3x3 Magic: 3 columns of equal width */
+    grid-template-columns: repeat(3, 1fr);
+    /* Rows fill available space */
+    grid-template-rows: repeat(3, 1fr);
+    gap: var(--grid-gap);
+    height: calc(100vh - 80px); /* Subtract header height */
+}
+
+/* Card Anatomy */
+.bed-card {
+    background: var(--card-empty);
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bed-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.bed-card.occupied {
+    background-color: var(--card-occupied);
+    border-left: 6px solid var(--accent-color);
+}
+
+.bed-card.empty {
+    border: 2px dashed #ccc;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+}
+
+/* Typography */
+.bed-number {
+    font-size: 2rem;
+    font-weight: 800;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    opacity: 0.3;
+}
+
+.patient-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.mrn,.diagnosis {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 4px 0;
+}
+
+/* The Timer: Monospaced for stability */
+.timer-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--danger-color);
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* Dialog Styles */
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    width: 400px;
+    padding: 0;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+.modal-header {
+    background: var(--accent-color);
+    color: white;
+    padding: 15px;
+}
+
+.modal-header h2 { margin: 0; }
+
+form { padding: 20px; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+.form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 20px;
+}
+
+.btn-action {
+    padding: 15px;
+    font-size: 1.1rem;
+    text-align: left;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-action:hover { background: #e2e6ea; }

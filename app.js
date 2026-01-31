@@ -9,7 +9,7 @@ const STORAGE_KEY = "EWMS_STATE_V1";
 // STATE MANAGEMENT
 // The 'beds' array is the Single Source of Truth.
 // Indices 0-8 correspond to Bed Numbers 1-9.
-let beds =;
+let beds = [];
 
 /**
  * INITIALIZATION

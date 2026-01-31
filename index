@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Ward Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar">
+            <h1>Emergency Ward Management</h1>
+            <div id="connection-status" class="status-indicator">● System Ready</div>
+        </header>
+
+        <main id="ward-grid" class="ward-grid">
+            </main>
+    </div>
+
+    <dialog id="modal-admission" class="modal">
+        <div class="modal-header">
+            <h2>Admit Patient to Bed <span id="adm-bed-num"></span></h2>
+        </div>
+        <form id="form-admission" method="dialog">
+            <div class="form-group">
+                <label>Patient Name</label>
+                <input type="text" name="name" required placeholder="Doe, John">
+            </div>
+            <div class="form-group">
+                <label>Medical Record # (MRN)</label>
+                <input type="text" name="mrn" required placeholder="MRN-123456">
+            </div>
+            <div class="form-group">
+                <label>Diagnosis / Chief Complaint</label>
+                <input type="text" name="diagnosis" required placeholder="Acute Chest Pain">
+            </div>
+            <div class="modal-actions">
+                <button type="button" onclick="closeModal('modal-admission')">Cancel</button>
+                <button type="submit" class="btn-primary">Admit & Start Timer</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="modal-actions" class="modal">
+        <div class="modal-header">
+            <h2>Manage Bed <span id="act-bed-num"></span></h2>
+            <p id="act-patient-summary" class="patient-summary"></p>
+        </div>
+        <div class="action-grid">
+            <button class="btn-action" onclick="openEditMode()">
+                <span class="icon">✏️</span> Edit Data
+            </button>
+            <button class="btn-action" onclick="openTransferMode()">
+                <span class="icon">➡️</span> Transfer Bed
+            </button>
+            <button class="btn-action btn-danger" onclick="performCheckOut()">
+                <span class="icon">✅</span> Check Out / Discharge
+            </button>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeModal('modal-actions')">Close</button>
+        </div>
+    </dialog>
+
+    <dialog id="modal-transfer" class="modal">
+        <h2>Select Destination for Transfer</h2>
+        <div id="transfer-target-list" class="bed-list">
+            </div>
+        <button onclick="closeModal('modal-transfer')">Cancel</button>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>
